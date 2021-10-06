@@ -48,7 +48,7 @@ h1::first-letter{
   font-size: 80px;
 }
 h1{
-  color: darkred;
+ color: rgb(12, 183, 250);
 }
 @media only screen and (max-width: 800px) {
   .content{

@@ -42,8 +42,10 @@ function deleteItem(e){
 }
 function editItem(e){
     btnid=e.id;
+    
     let parid="p"+btnid;
     let paraid="s"+btnid;
+    
     let ind=todoItems.findIndex(
         item =>item.indexOf(paraid)>-1
       )
@@ -51,10 +53,15 @@ function editItem(e){
     let currentPara=document.getElementById(parid).innerHTML
     document.getElementById("inp").value=currentPara
     document.getElementById("btn1").innerText="update"
+  
 
-document.getElementById("btn1").addEventListener("click",()=>{
+document.getElementById("btn1").addEventListener("click",(e)=>{
     document.getElementById("btn1").innerText="Add"
-    todoItems[ind]=document.getElementById("inp").value
+  document.getElementById(parid).innerHTML=document.getElementById("inp").value
+  let newval=document.getElementById("inp").value
+  todoItems.splice(ind,1)
+  localStorage.setItem("savedItem",JSON.stringify(todoItems))
+ todoItems[ind]=`<p id=${paraid}><span id=${parid}>${newval}</span><span><button id=${val} onclick="editItem(this)" class="btn btn-primary btn-sm mx-2">Edit</button><span><button id=${val} onclick="deleteItem(this)" class="btn btn-danger  btn-sm s">Delete</button></span></p>`
     localStorage.setItem("savedItem",JSON.stringify(todoItems))
       showItem()
 })
